@@ -1,0 +1,4 @@
+{
+  "extends": ["next/babel", "next/core-web-vitals"]
+  // added in array brackets and "next/babel to remove webpack.cache dependencies issues in terminal
+}

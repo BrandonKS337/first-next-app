@@ -17,6 +17,7 @@ export default async function Post({ params }) {
   const post = await getPostData(params.id);
   return (
     <>
+    <h2>New Branch</h2>
       <div className="post">
         {post ? (
           <>

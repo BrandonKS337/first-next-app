@@ -30,6 +30,7 @@ export default async function Post({ params }) {
         )}
       </div>
       <Link href="/posts">All Posts</Link>
+      
     </>
   );
 }

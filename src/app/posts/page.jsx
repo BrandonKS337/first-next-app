@@ -1,5 +1,10 @@
 import Link from "next/link";
+import styles from "../page.module.css";
+import PostsLimit from "@/components/PostsLimit";
 
+export function PageLayout({ children }) {
+  return <main className={styles.main}>{children}</main>;
+}
 
 async function getPostsData(limit, page = 1) {
   const res = await fetch(
@@ -14,8 +19,10 @@ async function getPostsData(limit, page = 1) {
   }
   return res.json();
 }
-export default async function Posts() {
-  const posts = await getPostsData(5);
+
+export default async function Posts({ searchParams }) {
+  const limit = searchParams.limit ? searchParams.limit : 5;
+  const posts = await getPostsData(limit);
   const postList = posts.map((post) => (
     <li key={post.id}>
       <Link href={"/posts/" + post.id}>
@@ -27,6 +34,7 @@ export default async function Posts() {
     <div className="Posts">
       <h1>Posts</h1>
       <ul>{postList}</ul>
+      <PostsLimit defaultLimit={limit} />
     </div>
   );
 }
